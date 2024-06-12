@@ -11,6 +11,9 @@ class PortfolioController extends Controller
     public function index() {
         $portfolios = Portfolio::all();
         
-        return response()->json($portfolios);
+        return response()->json([
+            'success' => true,
+            'results' => $portfolios,
+        ]);
     }
 }
