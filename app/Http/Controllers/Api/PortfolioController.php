@@ -9,7 +9,7 @@ use App\Models\Portfolio;
 class PortfolioController extends Controller
 {
     public function index() {
-        $portfolios = Portfolio::all();
+        $portfolios = Portfolio::with('technologies', 'type')->get();
         
         return response()->json([
             'success' => true,
