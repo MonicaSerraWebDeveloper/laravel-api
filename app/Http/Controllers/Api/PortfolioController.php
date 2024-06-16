@@ -16,4 +16,25 @@ class PortfolioController extends Controller
             'results' => $portfolios,
         ]);
     }
+
+    public function show($slug) {
+
+        $portfolio = Portfolio::where('slug', '=', $slug)->with('technologies', 'type')->first();
+
+        if($portfolio) {
+            $data = [
+                'success' => true,
+                'portfolio' => $portfolio, 
+            ];
+        } else {
+            $data = [
+                'success' => false,
+                'error' => "Data not found", 
+            ];
+        }
+        
+
+        return response()->json($data);
+
+    }
 }
